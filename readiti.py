@@ -32,7 +32,7 @@ def get_content(fname:str)->tuple:
 def cleaner(text:str)->list:
     """Return a list of all the Arabic tokens and the sentence separators.
     """
-
+    # Preserves hashtags to mark sentence boundaries
     arabic_regex = "[ذ١٢٣٤٥٦٧٨٩٠ّـضصثقفغعهخحجدًٌَُلإإشسيبلاتنمكطٍِلأأـئءؤرلاىةوزظْلآآ]+|#+"
     
     tokens = (m for m in re.finditer(arabic_regex, text))
@@ -102,7 +102,9 @@ def file_processor(src_file:str, dst_dir:str, verbose=True)->None:
     indexed = indexizer(sentences)
 
     with open(os.path.join(dst_dir, 'tokens.txt'), 'w') as new_file:
-        new_file.write('\n'.join(cleaned).replace('#', ''))
+        # Converts hashtags into newlines to mark sentence boundaries
+        out = '\n'.join(cleaned).replace('#', '')
+        new_file.write(re.sub('\n{3,}', '\n\n', out))
     
     with open(os.path.join(dst_dir, 'sentences.txt'), 'w') as new_file:
         new_file.write('\n'.join(sentences))
@@ -151,7 +153,9 @@ def dir_processor(src_dir:str, dst_dir:str, verbose=True)->None:
                 print(f"number of tokens: {len(cleaned) - count_new_line}")
 
             with open(os.path.join(dst_dir, name + '_tokens.txt'), 'w') as new_file:
-                new_file.write('\n'.join(cleaned).replace('#', ''))
+                # Converts hashtags into newlines to mark sentence boundaries
+                out = '\n'.join(cleaned).replace('#', '')
+                new_file.write(re.sub('\n{3,}', '\n\n', out))
             
             with open(os.path.join(dst_dir, name + '_sentences.txt'), 'w') as new_file:
                 new_file.write('\n'.join(sentences))
