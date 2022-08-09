@@ -113,7 +113,7 @@ def file_processor(src_file:str, dst_dir:str, verbose=True)->None:
     df_indexed.to_csv(os.path.join(dst_dir, 'doc.tsv'), sep="\t")
     
     if verbose:
-        print(f"length original:{len(text.split())}")
+        print(f"length original: {len(text.split())}")
         print(f"number of sentences: {len(sentences)}")
         count_new_line = cleaned.count('\n\n')
         print(f"number of tokens: {len(cleaned) - count_new_line}")
