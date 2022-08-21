@@ -1,0 +1,9 @@
+name: readiti
+
+dependecies:
+  - python=3.9
+  - os
+  - re
+  - typing
+  - pandas
+  - itertools
