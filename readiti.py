@@ -1,5 +1,5 @@
 ###################################################################
-# OpenITI customized cleaner | by Maroussia Bednarkiewicz
+# Customised OpenITI Text Preprocessing | by Maroussia Bednarkiewicz
 ###################################################################
 
 import os
