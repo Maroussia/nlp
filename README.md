@@ -1,7 +1,7 @@
-ReadITI is designed to clean texts from the OpenITI corpus and prepare them for Natural Language Processing (tasks).
+ReadITI is designed to prepare texts from the OpenITI corpus for Natural Language Processing (tasks).
 It is inspired from `openiti.helper.ara`:
 https://openiti.readthedocs.io/en/latest/source/usermanual.html#openiti-helper
-If you use `openiti.helper.ara.tokenize` to clean your text(s) from annotations and tokenize it, bear in mind that the Arabic metadata will be preserved and appear as tokens in your output. ReadITI allows you to separate the metadata and cut the text into sentences or paragraphs using the hashtags (#).
+If you use `openiti.helper.ara.tokenize` to tokenize your text(s) for further annotations, bear in mind that the Arabic metadata will be preserved and appear as tokens in your output. ReadITI allows you to separate the metadata and cut the text into sentences or paragraphs using the hashtags (#).
 
 You can download OpenITI on the zenodo platform:
 https://doi.org/10.5281/zenodo.6808108
