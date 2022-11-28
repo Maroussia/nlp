@@ -12,14 +12,17 @@ from itertools import chain
 ###################################################################
 
 def get_content(fname: str) -> tuple:
-    """Return a tuple of two strings containing
+    """Return OpenITI metadata and content separately.
+
+    Return a tuple of two strings containing
     (1) the metadata;
-    (2) the text content of the given file.
+    (2) the text content in Arabic.
     """
     
     with open(fname, 'r+') as wrapper:
         text_all = wrapper.read()
-        # Removes the META information ending with #META#Header#End#
+        
+        # META section ends with #META#Header#End# and two newlines
         meta, _, text = text_all.partition('#META#Header#End#\n\n')
     
     return meta, text
@@ -31,7 +34,7 @@ def get_content(fname: str) -> tuple:
 def cleaner(text: str) -> list[str]:
     """Return a list of all the Arabic tokens and the sentence separators.
     """
-    # Preserves hashtags to mark sentence boundaries
+    # Note this regex preserves hashtags, which mark sentence boundaries
     arabic_regex = "[ذ١٢٣٤٥٦٧٨٩٠ّـضصثقفغعهخحجدًٌَُلإإشسيبلاتنمكطٍِلأأـئءؤرلاىةوزظْلآآ]+|#+"
     
     tokens = (m for m in re.finditer(arabic_regex, text))
@@ -77,7 +80,7 @@ def indexizer(sentences: list[str]) -> list[str]:
 ###################################################################
 
 def file_processor(src_file: str, dst_dir: str, verbose=True) -> None:
-    """Generates three files from src_file:
+    """Generate three files from src_file:
     (1) tokens.txt with the Arabic tokens of src_file;
     (2) sentences.txt with the Arabic tokens grouped by sentences;
     (3) doc.tsv with for each token, its index in the sentence 
@@ -101,7 +104,7 @@ def file_processor(src_file: str, dst_dir: str, verbose=True) -> None:
     indexed = indexizer(sentences)
 
     with open(os.path.join(dst_dir, 'tokens.txt'), 'w') as new_file:
-        # Converts hashtags into newlines to mark sentence boundaries
+        # Convert hashtags into newlines to mark sentence boundaries
         out = '\n'.join(cleaned).replace('#', '')
         new_file.write(re.sub('\n{3,}', '\n\n', out))
     
@@ -119,7 +122,7 @@ def file_processor(src_file: str, dst_dir: str, verbose=True) -> None:
 
 
 def dir_processor(src_dir: str, dst_dir: str, verbose=True) -> None:
-    """Generates three files from each file in src_dir:
+    """Generate three files from each file in src_dir:
     (1) fname_tokens.txt with the Arabic tokens of src_file;
     (2) fname_sentences.txt with the Arabic tokens grouped by sentences;
     (3) fname_doc.tsv with for each token its index in the sentence 
@@ -152,7 +155,7 @@ def dir_processor(src_dir: str, dst_dir: str, verbose=True) -> None:
                 print(f"number of tokens: {len(cleaned) - count_new_line}")
 
             with open(os.path.join(dst_dir, name + '_tokens.txt'), 'w') as new_file:
-                # Converts hashtags into newlines to mark sentence boundaries
+                # Convert hashtags into newlines to mark sentence boundaries
                 out = '\n'.join(cleaned).replace('#', '')
                 new_file.write(re.sub('\n{3,}', '\n\n', out))
             
