@@ -28,7 +28,7 @@ def get_content(fname: str) -> tuple:
 # Clean the text content to retain only the Arabic and separator
 ###################################################################
 
-def cleaner(text: str) -> List:
+def cleaner(text: str) -> list[str]:
     """Return a list of all the Arabic tokens and the sentence separators.
     """
     # Preserves hashtags to mark sentence boundaries
