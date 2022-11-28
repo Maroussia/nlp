@@ -69,7 +69,7 @@ def indexizer(sentences: list[str]) -> list[str]:
         token_spans = []
         for token_idx, token in enumerate(sentence.split()):
             token_len = len(token)
-            token_spans.append(dict{(idx=token_idx,
+            token_spans.append(dict(idx=token_idx,
                                      token=token,
                                      start_char=char_idx,
                                      end_char=token_len+char_idx))
