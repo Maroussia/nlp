@@ -4,7 +4,6 @@
 
 import os
 import re
-from typing import List
 import pandas as pd
 from itertools import chain
 
@@ -12,7 +11,7 @@ from itertools import chain
 # Get the text content of a file
 ###################################################################
 
-def get_content(fname:str)->tuple:
+def get_content(fname: str) -> tuple:
     """Return a tuple of two strings containing
     (1) the metadata;
     (2) the text content of the given file.
@@ -29,7 +28,7 @@ def get_content(fname:str)->tuple:
 # Clean the text content to retain only the Arabic and separator
 ###################################################################
 
-def cleaner(text:str)->list:
+def cleaner(text: str) -> List:
     """Return a list of all the Arabic tokens and the sentence separators.
     """
     # Preserves hashtags to mark sentence boundaries
@@ -43,7 +42,7 @@ def cleaner(text:str)->list:
 # Break the text into sentences
 ###################################################################
 
-def sentencizer(cleaned:list)->list:
+def sentencizer(cleaned: list[str]) -> list[str]:
     """Return a list of sentences from the list of tokens.
     """
 
@@ -55,7 +54,7 @@ def sentencizer(cleaned:list)->list:
 # Generate a customized doc object
 ###################################################################
 
-def indexizer(sentences:List[str])->List:
+def indexizer(sentences: list[str]) -> list[str]:
     """Return a list of sentences which contain each a list of dictionaries
     with token_id, token, start_chr, end_chr for each token of the sentence.
     """
@@ -77,7 +76,7 @@ def indexizer(sentences:List[str])->List:
 # General functions
 ###################################################################
 
-def file_processor(src_file:str, dst_dir:str, verbose=True)->None:
+def file_processor(src_file: str, dst_dir: str, verbose=True) -> None:
     """Generates three files from src_file:
     (1) tokens.txt with the Arabic tokens of src_file;
     (2) sentences.txt with the Arabic tokens grouped by sentences;
@@ -119,7 +118,7 @@ def file_processor(src_file:str, dst_dir:str, verbose=True)->None:
         print(f"number of tokens: {len(cleaned) - count_new_line}")
 
 
-def dir_processor(src_dir:str, dst_dir:str, verbose=True)->None:
+def dir_processor(src_dir: str, dst_dir: str, verbose=True) -> None:
     """Generates three files from each file in src_dir:
     (1) fname_tokens.txt with the Arabic tokens of src_file;
     (2) fname_sentences.txt with the Arabic tokens grouped by sentences;
