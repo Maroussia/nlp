@@ -62,16 +62,18 @@ def indexizer(sentences: list[str]) -> list[str]:
     with token_id, token, start_chr, end_chr for each token of the sentence.
     """
 
-    idx = 0
+    char_idx = 0
     document = []
+
     for sentence in sentences:
         token_spans = []
-        for token_id, token in enumerate(sentence.split()):
-            token_spans.append({'idx':token_id,
-                        'token': token,
-                        'start_char': idx,
-                        'end_char': idx + len(token)})
-            idx += len(token) + 1
+        for token_idx, token in enumerate(sentence.split()):
+            token_len = len(token)
+            token_spans.append(dict{(idx=token_idx,
+                                     token=token,
+                                     start_char=char_idx,
+                                     end_char=token_len+char_idx))
+            idx += token_len + 1
         document.append(token_spans)
     return document
 
