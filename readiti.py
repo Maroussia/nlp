@@ -156,14 +156,14 @@ def dir_processor(src_dir: str, dst_dir: str, verbose=True) -> None:
                 count_new_line = cleaned.count('\n\n')
                 print(f"number of tokens: {len(cleaned) - count_new_line}")
 
-            with open(os.path.join(dst_dir, name + '_tokens.txt'), 'w') as new_file:
+            with open(os.path.join(dst_dir, name.replace('.txt', '_tokens.txt')), 'w') as new_file:
                 # Convert hashtags into newlines to mark sentence boundaries
                 out = '\n'.join(cleaned).replace('#', '')
                 new_file.write(re.sub('\n{3,}', '\n\n', out))
             
-            with open(os.path.join(dst_dir, name + '_sentences.txt'), 'w') as new_file:
+            with open(os.path.join(dst_dir, name.replace('.txt', '_sentences.txt')), 'w') as new_file:
                 new_file.write('\n'.join(sentences))
 
             df_indexed = pd.DataFrame(list(chain.from_iterable(indexed)))
-            df_indexed.to_csv(os.path.join(dst_dir, name + '_doc.tsv'), sep="\t")
+            df_indexed.to_csv(os.path.join(dst_dir, name.replace('.txt', '_doc.tsv')), sep="\t")
 
