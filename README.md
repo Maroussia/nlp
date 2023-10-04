@@ -14,11 +14,13 @@ ReadITI (1) separates the metadata from the main text and (2) cuts the text into
 
 You can install `ReadITI` in your local environment using the following steps (after activating your environement):
 ```
-`git clone git@github.com/Maroussia/readiti.git`
-
-`cd readiti`
-
-`pip install -e .`
+git clone git@github.com/Maroussia/readiti.git
+```
+```
+cd readiti
+```
+```
+pip install -e .
 ```
 You can also download only `readiti/readiti/readiti.py` or use the Jupyter Notebook `readiti/readiti_for_trials.ipynb`.
 
