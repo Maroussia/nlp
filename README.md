@@ -40,9 +40,9 @@ The **output** for both functions consists of 3 files per input file. Output fil
 	
 3. a `<name>.txt_doc.tsv` table where the tab (`\t`)-separated columns contain: 
 
-```
+
 	| idx | token | start_char | end_char|
-```
+
 i.e. token id (index into the vocabulary), token characters, index of the starting character, index of ending character.
 
 Sentences in output files are separated by two new lines (`\n\n`).
