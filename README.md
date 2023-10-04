@@ -10,6 +10,17 @@ https://openiti.readthedocs.io/en/latest/source/usermanual.html#openiti-helper).
 
 ReadITI (1) separates the metadata from the main text and (2) cuts the text into sentences or paragraphs using the OpenITI hashtags (`#`), whereas `openiti.helper.ara.tokenize` preserves metadata so that it will appear in your tokenized input, which is not what you want for NLP.
 
+# Installation
+
+You can install `ReadITI` in your local environment using the following steps (after activating your environement):
+```
+`git clone git@github.com/Maroussia/readiti.git`
+
+`cd readiti`
+
+`pip install -e .`
+```
+You can also download only `readiti/readiti/readiti.py` or use the Jupyter Notebook `readiti/readiti_for_trials.ipynb`.
 
 # Using ReadITI
 
