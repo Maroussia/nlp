@@ -100,10 +100,12 @@ def file_processor(src_file: str, dst_dir: str, verbose=True) -> None:
     the number of sentences.
     """
 
-    _, text = get_content(src_file)
-    cleaned = cleaner(text)
-    sentences = sentencizer(cleaned)
-    indexed = indexizer(sentences)
+    # Exclude hidden files
+    if not src_file.startswith('.'):
+        _, text = get_content(src_file)
+        cleaned = cleaner(text)
+        sentences = sentencizer(cleaned)
+        indexed = indexizer(sentences)
 
     with open(os.path.join(dst_dir, 'tokens.txt'), 'w') as new_file:
         # Convert hashtags into newlines to mark sentence boundaries
@@ -144,10 +146,12 @@ def dir_processor(src_dir: str, dst_dir: str, verbose=True) -> None:
 
     for root, dirs, files in os.walk(src_dir, topdown=False):
         for name in files:
-            _, text = get_content(os.path.join(root, name))
-            cleaned = cleaner(text)
-            sentences = sentencizer(cleaned)
-            indexed = indexizer(sentences)
+            # Exclude hidden files
+            if not name.startswith('.'):
+                _, text = get_content(os.path.join(root, name))
+                cleaned = cleaner(text)
+                sentences = sentencizer(cleaned)
+                indexed = indexizer(sentences)
             
             if verbose:
                 print(name)
